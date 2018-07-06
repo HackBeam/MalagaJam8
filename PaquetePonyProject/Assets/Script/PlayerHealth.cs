@@ -19,4 +19,15 @@ public class PlayerHealth : MonoBehaviour {
     {
         currentHealth = (currentHealth * _playerStats.GetCurrentMaxHealth()) / lastMaxHealth;
     }
+
+    public void DoDamage (int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            //funcion de muerte
+        }
+    }
+
+
 }
