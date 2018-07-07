@@ -10,9 +10,6 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private Transform bulletStart;
     [SerializeField] private MultiPoolSystem poolSystem;
 
-    [ValueDropdown("players")]
-    [SerializeField] private int playerID;
-
     [Title("Fire Time Configurations")]
     [SerializeField] private float fireRate;
     [SerializeField] private float reloadTime;
@@ -20,6 +17,8 @@ public class PlayerShooting : MonoBehaviour
 
     private bool canFire = true;
     private int ammo;
+
+    private PlayerIdentifier playerID;
 
     private static ValueDropdownList<int> players = new ValueDropdownList<int>()
     {
@@ -37,6 +36,7 @@ public class PlayerShooting : MonoBehaviour
         stats = GetComponent<PlayerStats>();
         fireRateWait = new WaitForSeconds(fireRate);
         reloadWait = new WaitForSeconds(reloadTime);
+        playerID = GetComponentInParent<PlayerIdentifier>();
         SubscribeInput();
     }
 
@@ -47,7 +47,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void SubscribeInput()
     {
-        Player player = ReInput.players.GetPlayer(playerID);
+        Player player = ReInput.players.GetPlayer(playerID.GetPlayerId());
         player.AddInputEventDelegate(Fire, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, RewiredConsts.Action.Fire);
     }
 

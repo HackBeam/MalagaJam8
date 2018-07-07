@@ -7,31 +7,24 @@ using Rewired;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [ValueDropdown("players")]
-    [SerializeField] private int playerID;
-
     private Vector3 movForce;
-
-    private static ValueDropdownList<int> players = new ValueDropdownList<int>()
-    {
-        {"Player0", RewiredConsts.Player.Player0},
-        {"Player1", RewiredConsts.Player.Player1}
-    };
 
     //Component referneces
     private Rigidbody rb;
     private PlayerStats stats;
+    private PlayerIdentifier playerID;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         stats = GetComponent<PlayerStats>();
+        playerID = GetComponentInParent<PlayerIdentifier>();
         SubscribeInput();
     }
 
     private void SubscribeInput()
     {
-        Player player = ReInput.players.GetPlayer(playerID);
+        Player player = ReInput.players.GetPlayer(playerID.GetPlayerId());
         player.AddInputEventDelegate(MoveHorizontal, UpdateLoopType.Update, InputActionEventType.AxisRawActive, RewiredConsts.Action.MovX);
         player.AddInputEventDelegate(MoveHorizontal, UpdateLoopType.Update, InputActionEventType.AxisRawInactive, RewiredConsts.Action.MovX);
         player.AddInputEventDelegate(MoveVertical, UpdateLoopType.Update, InputActionEventType.AxisRawActive, RewiredConsts.Action.MovY);
