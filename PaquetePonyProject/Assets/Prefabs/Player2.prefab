@@ -2802,6 +2802,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  _invalidSpawnLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  _child: {fileID: 1734769674917002}
 --- !u!114 &114161796775134896
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -32,12 +32,15 @@ public class PowerUpSpawner : SerializedMonoBehaviour {
     private Vector3 position;
     private GameObject auxiliar;
 
-
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         StartCoroutine(SpawnPowerUp());
-	}
+        Container.eventSystem.Trigger(new CenterScenaryEvent()
+        {
+            transformReference = this.transform
+        });
+    }
 	
 	IEnumerator SpawnPowerUp()
     {
