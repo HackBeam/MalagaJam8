@@ -17,7 +17,6 @@ public class PlayerHealth : MonoBehaviour {
         _playerStats = gameObject.GetComponent<PlayerStats>();
         _playerIdentifier = gameObject.GetComponent<PlayerIdentifier>();
         currentHealth = _playerStats.GetCurrentMaxHealth();
-        //Get PlayerId
         RefreshInterface();
     }
 	
@@ -27,7 +26,7 @@ public class PlayerHealth : MonoBehaviour {
         RefreshInterface();
     }
 
-    public void DoDamage (int amount)
+    public void ReceiveDamage (int amount)
     {
         currentHealth -= amount;
         RefreshInterface();
@@ -40,7 +39,7 @@ public class PlayerHealth : MonoBehaviour {
         }
     }
 
-    public void DoHeal(int amount)
+    public void ReceiveHeal(int amount)
     {
         currentHealth += amount;
         if (currentHealth > _playerStats.GetCurrentMaxHealth())
