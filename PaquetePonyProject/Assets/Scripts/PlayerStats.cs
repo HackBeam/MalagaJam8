@@ -10,14 +10,19 @@ public class PlayerStats : MonoBehaviour {
     [SerializeField] private int _maxDamagePowerUp = 5;
     [SerializeField] private int _maxSpeedPowerUp = 5;
 
-    private int _currentHealthPowerUp = 0;
-    private int _currentDamagePowerUp = 0;
-    private int _currentSpeedPowerUp = 0;
+    [Title("current PowerUp Value")]
+    [ReadOnly,SerializeField]private int _currentHealthPowerUp = 0;
+    [ReadOnly, SerializeField] private int _currentDamagePowerUp = 0;
+    [ReadOnly, SerializeField] private int _currentSpeedPowerUp = 0;
 
     [Title("Base Stats Value")]
     [SerializeField] private int _baseHealth = 10;
     [SerializeField] private int _baseDamage = 5;
     [SerializeField] private int _baseSpeed = 5;
+
+    [Title("Triggers Detection")]
+    [SerializeField] private LayerMask _layerInvertZone;
+    [SerializeField] private LayerMask _layerPowerUp;
 
     private bool currentlyInverted;
 
@@ -118,6 +123,47 @@ public class PlayerStats : MonoBehaviour {
             RefreshInterface();
             currentlyInverted = false;
             currentZones = 0;
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        // Es una zona de inversion
+        if (((1 << other.gameObject.layer) & _layerInvertZone) != 0)
+        {
+            Debug.Log("Inverted");
+            EnterInversionZone();
+        }
+        // Es un power Up
+        if (((1 << other.gameObject.layer) & _layerPowerUp) != 0)
+        {
+            Debug.Log("PowerUp");
+            PowerUp item = other.gameObject.GetComponent<PowerUp>();
+            switch (item._powerUpType)
+            {
+                case PowerUp.powerUpType.damage:
+                    ModifyDamage(item.getValue());
+                    Destroy(other.gameObject);
+                    break;
+                case PowerUp.powerUpType.speed:
+                    ModifySpeed(item.getValue());
+                    Destroy(other.gameObject);
+                    break;
+                case PowerUp.powerUpType.health:
+                    ModifyHealth(item.getValue());
+                    Destroy(other.gameObject);
+                    break;
+            }
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        // Es una zona de inversion
+        if (((1 << other.gameObject.layer) & _layerInvertZone) != 0)
+        {
+            Debug.Log("Inverted");
+            ExitInversionZone();
         }
     }
 
