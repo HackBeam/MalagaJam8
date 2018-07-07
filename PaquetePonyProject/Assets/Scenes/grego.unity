@@ -214,7 +214,9 @@ MonoBehaviour:
   bulletStart: {fileID: 1663971549}
   poolSystem: {fileID: 150651018}
   playerID: 0
-  fireRate: 1
+  fireRate: 0.3
+  reloadTime: 1
+  magazineCapacity: 5
 --- !u!114 &263047869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,9 +228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea32f1c467dd215428414c609f527dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealthPowerUp: 10
-  _maxDamagePowerUp: 5
-  _maxSpeedPowerUp: 5
+  _maxHealthPowerUp: 9
+  _maxDamagePowerUp: 4
+  _maxSpeedPowerUp: 4
   _baseHealth: 10
   _baseDamage: 5
   _baseSpeed: 5
