@@ -14,7 +14,7 @@ public class StatsChangedEvent
 public class HealthChangedEvent
 {
     public int playerId = -1;
-    public int newCurrentHealthPercent = 0;
+    public float newCurrentHealthPercent = 0;
     public HealthChangedEvent() { }
 }
 
