@@ -21,13 +21,7 @@ public class PlayerShooting : MonoBehaviour
     private int ammo;
 
     private PlayerIdentifier playerID;
-
-    private static ValueDropdownList<int> players = new ValueDropdownList<int>()
-    {
-        {"Player0", RewiredConsts.Player.Player0},
-        {"Player1", RewiredConsts.Player.Player1}
-    };
-
+    
     //Component References
     private PlayerStats stats;
     private WaitForSeconds fireRateWait;

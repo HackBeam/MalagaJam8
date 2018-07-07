@@ -7,26 +7,20 @@ using Rewired;
 
 public class PointerMovement : MonoBehaviour
 {
-    [ValueDropdown("players")]
-    [SerializeField] private int playerID;
     [SerializeField] private float aimingSensivity;
 
     private Vector3 movPos;
-
-    private static ValueDropdownList<int> players = new ValueDropdownList<int>()
-    {
-        {"Player0", RewiredConsts.Player.Player0},
-        {"Player1", RewiredConsts.Player.Player1}
-    };
+    private PlayerIdentifier playerID;
 
     private void Awake()
     {
+        playerID = GetComponentInParent<PlayerIdentifier>();
         SubscribeInput();
     }
 
     private void SubscribeInput()
     {
-        Player player = ReInput.players.GetPlayer(playerID);
+        Player player = ReInput.players.GetPlayer(playerID.GetPlayerId());
         player.AddInputEventDelegate(MoveHorizontal, UpdateLoopType.Update, InputActionEventType.AxisRawActive, RewiredConsts.Action.AimX);
         player.AddInputEventDelegate(MoveHorizontal, UpdateLoopType.Update, InputActionEventType.AxisRawInactive, RewiredConsts.Action.AimX);
         player.AddInputEventDelegate(MoveVertical, UpdateLoopType.Update, InputActionEventType.AxisRawActive, RewiredConsts.Action.AimY);
@@ -50,6 +44,7 @@ public class PointerMovement : MonoBehaviour
 
     private void Move()
     {
-        transform.localPosition = movPos * aimingSensivity;
+        if (Time.timeScale > 0)
+            transform.localPosition = movPos * aimingSensivity;
     }
 }

@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   lifeTime: 1
-  speed: 20
+  speed: 200
   collidableLayers:
     serializedVersion: 2
     m_Bits: 10240
