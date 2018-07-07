@@ -3160,7 +3160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbb3ddba8025dc46aa7c6a1123afdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
+  _invalidSpawnLayers:
+    serializedVersion: 2
+    m_Bits: 14336
+  _child: {fileID: 1193612822863522}
 --- !u!114 &114324876711009620
 MonoBehaviour:
   m_ObjectHideFlags: 1

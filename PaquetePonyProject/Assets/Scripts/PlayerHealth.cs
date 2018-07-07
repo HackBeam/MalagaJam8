@@ -95,7 +95,7 @@ public class PlayerHealth : MonoBehaviour {
     private void RefreshInterface()
     {
         float porcentualHealth = 0;
-        porcentualHealth = (currentHealth / _playerStats.GetCurrentMaxHealth());
+        porcentualHealth = ((float) currentHealth / _playerStats.GetCurrentMaxHealth());
         Container.eventSystem.Trigger(new HealthChangedEvent()
         {
             playerId = _playerIdentifier.GetPlayerId(),
