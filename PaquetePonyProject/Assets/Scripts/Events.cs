@@ -20,11 +20,17 @@ public class HealthChangedEvent
 
 public class DeathEvent
 {
-    public int playerId = -1;
+    public int deadPlayerId = -1;
     public DeathEvent() { }
 }
 
 public class GameOver
 {
     public GameOver() { }
+}
+
+public class CenterScenaryEvent
+{
+    public Transform transformReference = null;
+    public CenterScenaryEvent() { }
 }
