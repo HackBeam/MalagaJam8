@@ -13,12 +13,14 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private PlayerStats stats;
     private PlayerIdentifier playerID;
+    private Animator playerAnimator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         stats = GetComponent<PlayerStats>();
         playerID = GetComponentInParent<PlayerIdentifier>();
+        playerAnimator = GetComponentInChildren<Animator>();
         SubscribeInput();
     }
 
@@ -50,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     {
         float movSpeed = stats.GetCurrentSpeed();
         transform.Translate(movForce * movSpeed * Time.deltaTime);
-    }
-
-    
+        playerAnimator.SetBool("Correr",movForce.magnitude > 0.05);
+    }  
 }

@@ -15,6 +15,8 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float reloadTime;
     [SerializeField] private int magazineCapacity;
 
+    private Animator playerAnimator;
+
     private bool canFire = true;
     private int ammo;
 
@@ -37,6 +39,7 @@ public class PlayerShooting : MonoBehaviour
         fireRateWait = new WaitForSeconds(fireRate);
         reloadWait = new WaitForSeconds(reloadTime);
         playerID = GetComponentInParent<PlayerIdentifier>();
+        playerAnimator = GetComponentInChildren<Animator>();
         SubscribeInput();
     }
 
@@ -60,6 +63,8 @@ public class PlayerShooting : MonoBehaviour
             bullet.transform.position = bulletStart.transform.position;
             bullet.transform.rotation = bulletStart.transform.rotation;
             bullet.SetActive(true);
+
+            playerAnimator.SetBool("Disparar",true);
 
             ammo--;
             StartCoroutine(FireRateTimer());
