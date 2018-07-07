@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        float movSpeed = 1; //stats.GetCurrentSpeed();
+        float movSpeed = stats.GetCurrentSpeed();
         transform.Translate(movForce * movSpeed * Time.deltaTime);
     }
 
