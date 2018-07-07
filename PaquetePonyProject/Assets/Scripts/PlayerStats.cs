@@ -16,9 +16,9 @@ public class PlayerStats : MonoBehaviour {
     [ReadOnly, SerializeField] private int _currentSpeedPowerUp = 0;
 
     [Title("Base Stats Value")]
-    [SerializeField] private int _baseHealth = 10;
-    [SerializeField] private int _baseDamage = 5;
-    [SerializeField] private int _baseSpeed = 5;
+    [SerializeField] private int _baseHealth = 20;
+    [SerializeField] private int _baseDamage = 10;
+    [SerializeField] private int _baseSpeed = 10;
 
     [Title("Triggers Detection")]
     [SerializeField] private LayerMask _layerInvertZone;
@@ -29,6 +29,24 @@ public class PlayerStats : MonoBehaviour {
     private PlayerHealth _playerHealth;
     private PlayerIdentifier _playerIdentifier;
     private int currentZones = 0;
+
+    private void OnValidate()
+    {
+        if((_baseHealth - _maxHealthPowerUp) <= 0)
+        {
+            _maxHealthPowerUp = _baseHealth - 1;
+        }
+
+        if ((_baseSpeed - _maxSpeedPowerUp) <= 0)
+        {
+            _maxSpeedPowerUp = _baseSpeed - 1;
+        }
+
+        if ((_baseDamage - _maxDamagePowerUp) <= 0)
+        {
+            _maxDamagePowerUp = _baseDamage - 1;
+        }
+    }
 
     public void Awake()
     {
@@ -49,7 +67,7 @@ public class PlayerStats : MonoBehaviour {
   
     public int GetCurrentMaxHealth()
     {
-        return _baseSpeed + _currentSpeedPowerUp;
+        return _baseHealth + _currentHealthPowerUp;
     }
     #endregion
 
@@ -104,10 +122,12 @@ public class PlayerStats : MonoBehaviour {
         currentZones++;
         if (!currentlyInverted)
         {
+            int lastMaxHealth = GetCurrentMaxHealth();
             _currentHealthPowerUp = -_currentHealthPowerUp;
             _currentDamagePowerUp = -_currentDamagePowerUp;
             _currentSpeedPowerUp = -_currentSpeedPowerUp;
             RefreshInterface();
+            _playerHealth.OnMaxHealthModified(lastMaxHealth);
             currentlyInverted = true;
         }
     }
@@ -117,9 +137,11 @@ public class PlayerStats : MonoBehaviour {
         currentZones--;
         if (currentlyInverted && currentZones <= 0)
         {
+            int lastMaxHealth = GetCurrentMaxHealth();
             _currentHealthPowerUp = -_currentHealthPowerUp;
             _currentDamagePowerUp = -_currentDamagePowerUp;
             _currentSpeedPowerUp = -_currentSpeedPowerUp;
+            _playerHealth.OnMaxHealthModified(lastMaxHealth);
             RefreshInterface();
             currentlyInverted = false;
             currentZones = 0;
@@ -131,9 +153,10 @@ public class PlayerStats : MonoBehaviour {
         // Es una zona de inversion
         if (((1 << other.gameObject.layer) & _layerInvertZone) != 0)
         {
-            Debug.Log("Inverted");
+            Debug.Log("EnterInverted");
             EnterInversionZone();
         }
+
         // Es un power Up
         if (((1 << other.gameObject.layer) & _layerPowerUp) != 0)
         {
@@ -142,15 +165,15 @@ public class PlayerStats : MonoBehaviour {
             switch (item._powerUpType)
             {
                 case PowerUp.powerUpType.damage:
-                    ModifyDamage(item.getValue());
+                    ModifyDamage(item.GetValue());
                     Destroy(other.gameObject);
                     break;
                 case PowerUp.powerUpType.speed:
-                    ModifySpeed(item.getValue());
+                    ModifySpeed(item.GetValue());
                     Destroy(other.gameObject);
                     break;
                 case PowerUp.powerUpType.health:
-                    ModifyHealth(item.getValue());
+                    ModifyHealth(item.GetValue());
                     Destroy(other.gameObject);
                     break;
             }
@@ -162,7 +185,7 @@ public class PlayerStats : MonoBehaviour {
         // Es una zona de inversion
         if (((1 << other.gameObject.layer) & _layerInvertZone) != 0)
         {
-            Debug.Log("Inverted");
+            Debug.Log("ExitInverted");
             ExitInversionZone();
         }
     }
@@ -176,7 +199,6 @@ public class PlayerStats : MonoBehaviour {
             newDamagePowerUp = _currentDamagePowerUp,
             newSpeedPowerUp = _currentSpeedPowerUp
         });
-        currentlyInverted = false;
     }
 }
 

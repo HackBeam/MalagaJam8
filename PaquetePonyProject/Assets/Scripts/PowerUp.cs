@@ -15,9 +15,25 @@ public class PowerUp : MonoBehaviour {
     [SerializeField] public powerUpType _powerUpType;
     
 	// Update is called once per frame
-	public int getValue()
+
+    public PowerUp(powerUpType type, int amount)
+    {
+        _powerUpType = type;
+        value = amount;
+    }
+	public int GetValue()
     {
         return value;
+    }
+
+    public void SetValue(int data)
+    {
+        value = data;
+    }
+
+    public void SetType(powerUpType type)
+    {
+        _powerUpType = type;
     }
 
     public powerUpType getPowerUpType()
