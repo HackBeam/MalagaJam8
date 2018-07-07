@@ -42,7 +42,6 @@ public class PowerUpSpawner : SerializedMonoBehaviour {
 	IEnumerator SpawnPowerUp()
     {
         yield return new WaitForSeconds(_ratio + Random.Range(-5, 5));
-        //Debug.Log("Spawn");
         while (!placeFounded)
         {
             FindPosition();
@@ -58,6 +57,7 @@ public class PowerUpSpawner : SerializedMonoBehaviour {
         position.x = Random.Range(0, (int)_mapSize.x + 1);
         position.y = 0;
         position.z = Random.Range(0, (int)_mapSize.z + 1);
+        position += transform.position;
 
         if(Physics.OverlapSphere(position, 1, _invalidSpawnLayers).Length == 0)
         {
