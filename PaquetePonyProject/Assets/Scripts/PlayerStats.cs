@@ -167,7 +167,6 @@ public class PlayerStats : MonoBehaviour
         // Es una zona de inversion
         if (((1 << other.gameObject.layer) & _layerInvertZone) != 0)
         {
-            Debug.Log("EnterInverted");
             EnterInversionZone();
         }
 
@@ -199,7 +198,6 @@ public class PlayerStats : MonoBehaviour
         // Es una zona de inversion
         if (((1 << other.gameObject.layer) & _layerInvertZone) != 0)
         {
-            Debug.Log("ExitInverted");
             ExitInversionZone();
         }
     }

@@ -42,7 +42,6 @@ public class PowerUpSpawner : SerializedMonoBehaviour {
 	IEnumerator SpawnPowerUp()
     {
         yield return new WaitForSeconds(_ratio + Random.Range(-5, 5));
-        //Debug.Log("Spawn");
         while (!placeFounded)
         {
             FindPosition();
