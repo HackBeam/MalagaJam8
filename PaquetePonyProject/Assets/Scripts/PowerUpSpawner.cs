@@ -18,7 +18,7 @@ public class PowerUpSpawner : SerializedMonoBehaviour {
     [Title("Spawn Properties")]
     [SerializeField] private float _ratio = 10;
     [SerializeField] private float _maxRatioVariation = 5;
-    [SerializeField] private Vector3 _mapSize;
+    [SerializeField] private float _radius;
     [SerializeField] private int _powerUpRadius = 2;
     [SerializeField] private LayerMask _invalidSpawnLayers;
     [Title("PowerUp Properties")]
@@ -55,14 +55,30 @@ public class PowerUpSpawner : SerializedMonoBehaviour {
 
     private void FindPosition()
     {
-        position.x = Random.Range(0, (int)_mapSize.x + 1);
-        position.y = 0;
-        position.z = Random.Range(0, (int)_mapSize.z + 1);
+        Vector3 _right = transform.right * Random.Range(-_radius, _radius);
+        Vector3 _left = transform.forward * Random.Range(-_radius, _radius);
+        //position.x = transform.position.x + Random.Range(-_radius, _radius);
+        //position.y = 1;
+        //position.z = transform.position.z + Random.Range(-_radius, _radius);
+        position = (_right + _left) + transform.position;
 
-        if(Physics.OverlapSphere(position, 1, _invalidSpawnLayers).Length == 0)
+        if (Physics.OverlapSphere(position, 1, _invalidSpawnLayers).Length == 0)
         {
             placeFounded = true;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        //Gizmos.DrawWireCube(transform.position,new Vector3(_radius * 2,1,_radius * 2));
+        Gizmos.DrawLine(transform.position + (transform.forward * _radius + transform.right * _radius), transform.position + (-transform.forward * _radius + transform.right * _radius));
+        Gizmos.DrawLine(transform.position + (-transform.forward * _radius + transform.right * _radius), transform.position + (-transform.forward * _radius - transform.right * _radius));
+        Gizmos.DrawLine(transform.position + (-transform.forward * _radius - transform.right * _radius), transform.position + (transform.forward * _radius - transform.right * _radius));
+        Gizmos.DrawLine(transform.position + (transform.forward * _radius - transform.right * _radius), transform.position + (transform.forward * _radius + transform.right * _radius));
+
+
+        //Gizmos.DrawWireMesh(Cube)
     }
 
     private void InstanciatePowerUp()
