@@ -7,15 +7,19 @@ using System;
 
 public class PlayerShooting : MonoBehaviour
 {
-
     [SerializeField] private Transform bulletStart;
     [SerializeField] private MultiPoolSystem poolSystem;
 
     [ValueDropdown("players")]
     [SerializeField] private int playerID;
+
+    [Title("Fire Time Configurations")]
     [SerializeField] private float fireRate;
+    [SerializeField] private float reloadTime;
+    [SerializeField] private int magazineCapacity;
 
     private bool canFire = true;
+    private int ammo;
 
     private static ValueDropdownList<int> players = new ValueDropdownList<int>()
     {
@@ -25,13 +29,20 @@ public class PlayerShooting : MonoBehaviour
 
     //Component References
     private PlayerStats stats;
-    private WaitForSeconds wait;
+    private WaitForSeconds fireRateWait;
+    private WaitForSeconds reloadWait;
 
     private void Awake()
     {
         stats = GetComponent<PlayerStats>();
-        wait = new WaitForSeconds(fireRate);
+        fireRateWait = new WaitForSeconds(fireRate);
+        reloadWait = new WaitForSeconds(reloadTime);
         SubscribeInput();
+    }
+
+    private void OnEnable()
+    {
+        ammo = magazineCapacity;
     }
 
     private void SubscribeInput()
@@ -42,21 +53,34 @@ public class PlayerShooting : MonoBehaviour
 
     private void Fire(InputActionEventData data)
     {
-        if (canFire)
+        if (canFire && ammo > 0)
         {
             GameObject bullet = poolSystem.GetFreeObject<Shoot>();
             bullet.GetComponent<Shoot>().damage = stats.GetCurrentDamage();
             bullet.transform.position = bulletStart.transform.position;
             bullet.transform.rotation = bulletStart.transform.rotation;
             bullet.SetActive(true);
-			StartCoroutine(FireRateTimer());
+
+            ammo--;
+            StartCoroutine(FireRateTimer());
+
+            if (ammo <= 0)
+            {
+                StartCoroutine(ReloadTime());
+            }
         }
+    }
+
+    private IEnumerator ReloadTime()
+    {
+        yield return reloadWait;
+        ammo = magazineCapacity;
     }
 
     private IEnumerator FireRateTimer()
     {
         canFire = false;
-		yield return wait;
-		canFire = true;
+        yield return fireRateWait;
+        canFire = true;
     }
 }
