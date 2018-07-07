@@ -167,8 +167,14 @@ MonoBehaviour:
       - _enabled: 1
         _categoryId: 0
         _layoutId: 0
-      _defaultMouseMaps: []
-      _defaultKeyboardMaps: []
+      _defaultMouseMaps:
+      - _enabled: 1
+        _categoryId: 0
+        _layoutId: 0
+      _defaultKeyboardMaps:
+      - _enabled: 1
+        _categoryId: 0
+        _layoutId: 0
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 1
