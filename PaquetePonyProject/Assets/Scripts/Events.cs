@@ -23,3 +23,8 @@ public class DeathEvent
     public int playerId = -1;
     public DeathEvent() { }
 }
+
+public class GameOver
+{
+    public GameOver() { }
+}
