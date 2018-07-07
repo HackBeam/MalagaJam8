@@ -54,7 +54,7 @@ public class PlayerHealth : MonoBehaviour {
         Container.eventSystem.Trigger(new HealthChangedEvent()
         {
             playerId = _playerIdentifier.GetPlayerId(),
-            newCurrentHealthPercent = currentHealth
+            newCurrentHealthPercent = porcentualHealth
         });
     }
 
