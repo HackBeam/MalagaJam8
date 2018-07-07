@@ -45,6 +45,6 @@ Material:
     - _PixelSize: 1
     - _Radius: 9
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
     - _Color2: {r: 0.53676474, g: 0.53676474, b: 0.53676474, a: 1}
     - _DisLineColor: {r: 0, g: 0, b: 0, a: 1}

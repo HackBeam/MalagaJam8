@@ -1,13 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class PlayerIdentifier : MonoBehaviour {
 
-    [SerializeField] private int _playerId = -1;
+    
+    [ValueDropdown("players")]
+    [SerializeField] private int playerID;
+
+
+    private static ValueDropdownList<int> players = new ValueDropdownList<int>()
+    {
+        {"Player0", RewiredConsts.Player.Player0},
+        {"Player1", RewiredConsts.Player.Player1}
+    };
 
     public int GetPlayerId()
     {
-        return _playerId;
+        return playerID;
     }
 }

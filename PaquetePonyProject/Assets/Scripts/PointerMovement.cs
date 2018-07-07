@@ -2,14 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System;
+using Rewired;
 
 public class PointerMovement : MonoBehaviour
 {
-    [Title("Aiming Config")]
-    [SerializeField] private string aimingAxisX;
-    [SerializeField] private string aimingAxisY;
+    [ValueDropdown("players")]
+    [SerializeField] private int playerID;
     [SerializeField] private float aimingSensivity;
-	[SerializeField] private GameObject playerToFollow;
+
+    private Vector3 movPos;
+
+    private static ValueDropdownList<int> players = new ValueDropdownList<int>()
+    {
+        {"Player0", RewiredConsts.Player.Player0},
+        {"Player1", RewiredConsts.Player.Player1}
+    };
+
+    private void Awake()
+    {
+        SubscribeInput();
+    }
+
+    private void SubscribeInput()
+    {
+        Player player = ReInput.players.GetPlayer(playerID);
+        player.AddInputEventDelegate(MoveHorizontal, UpdateLoopType.Update, InputActionEventType.AxisRawActive, RewiredConsts.Action.AimX);
+        player.AddInputEventDelegate(MoveHorizontal, UpdateLoopType.Update, InputActionEventType.AxisRawInactive, RewiredConsts.Action.AimX);
+        player.AddInputEventDelegate(MoveVertical, UpdateLoopType.Update, InputActionEventType.AxisRawActive, RewiredConsts.Action.AimY);
+        player.AddInputEventDelegate(MoveVertical, UpdateLoopType.Update, InputActionEventType.AxisRawInactive, RewiredConsts.Action.AimY);
+    }
+    
+    private void MoveVertical(InputActionEventData data)
+    {
+        movPos.z = data.GetAxis();
+    }
+
+    private void MoveHorizontal(InputActionEventData data)
+    {
+        movPos.x = data.GetAxis();
+    }
 
     private void Update()
     {
@@ -18,11 +50,6 @@ public class PointerMovement : MonoBehaviour
 
     private void Move()
     {
-        float movXaxis = Input.GetAxisRaw(aimingAxisX);
-        float movYaxis = Input.GetAxisRaw(aimingAxisY);
-
-        Vector3 movForce = new Vector3(movXaxis, 0, movYaxis);
-
-        transform.position = playerToFollow.transform.position + (movForce * aimingSensivity);
+        transform.localPosition = movPos * aimingSensivity;
     }
 }

@@ -3,59 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using Rewired;
 
 public class PlayerMovement : MonoBehaviour
 {
-	[Title("Movement")]
-    [SerializeField] private string movementAxisX;
-    [SerializeField] private string movementAxisY;
-
-    [Title("Aiming Pointer")]
-    [SerializeField] private GameObject pointer;
+    private Vector3 movForce;
 
     //Component referneces
     private Rigidbody rb;
-    //private PlayerStats stats;
+    private PlayerStats stats;
+    private PlayerIdentifier playerID;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        //stats = GetComponent<PlayerStats>();
+        stats = GetComponent<PlayerStats>();
+        playerID = GetComponentInParent<PlayerIdentifier>();
+        SubscribeInput();
+    }
+
+    private void SubscribeInput()
+    {
+        Player player = ReInput.players.GetPlayer(playerID.GetPlayerId());
+        player.AddInputEventDelegate(MoveHorizontal, UpdateLoopType.Update, InputActionEventType.AxisRawActive, RewiredConsts.Action.MovX);
+        player.AddInputEventDelegate(MoveHorizontal, UpdateLoopType.Update, InputActionEventType.AxisRawInactive, RewiredConsts.Action.MovX);
+        player.AddInputEventDelegate(MoveVertical, UpdateLoopType.Update, InputActionEventType.AxisRawActive, RewiredConsts.Action.MovY);
+        player.AddInputEventDelegate(MoveVertical, UpdateLoopType.Update, InputActionEventType.AxisRawInactive, RewiredConsts.Action.MovY);
+    }
+
+    private void MoveVertical(InputActionEventData data)
+    {
+        movForce.z = data.GetAxis();
+    }
+
+    private void MoveHorizontal(InputActionEventData data)
+    {
+        movForce.x = data.GetAxis();
     }
 
     private void Update()
     {
         Move();
-        Rotate();
     }
 
     private void Move()
     {
-        float movXaxis = 0;
-        float movYaxis = 0;
-
-        if (movementAxisX != "")
-            movXaxis = Input.GetAxisRaw(movementAxisX);
-
-        if (movementAxisY != "")
-            movYaxis = Input.GetAxisRaw(movementAxisY);
-
-        Vector3 movForce = new Vector3(movXaxis, 0, movYaxis);
-        float movSpeed = 1; //Get from stats component
-
-        transform.Translate(movForce * movSpeed);
+        float movSpeed = stats.GetCurrentSpeed();
+        transform.Translate(movForce * movSpeed * Time.deltaTime);
     }
 
-    private void Rotate()
-    {
-        if (pointer != null)
-        {
-            Vector3 lookPos = pointer.transform.position;
-
-            lookPos.y = 0;
-            transform.LookAt(lookPos);
-
-            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-        }
-    }
+    
 }
