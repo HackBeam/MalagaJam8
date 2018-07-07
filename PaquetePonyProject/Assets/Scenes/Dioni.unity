@@ -264,6 +264,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 224001689358184808, guid: f3788879d0c735d4b956a7d98420d241,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114537245907567448, guid: f3788879d0c735d4b956a7d98420d241,
+        type: 2}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2075055501}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3788879d0c735d4b956a7d98420d241, type: 2}
   m_IsPrefabParent: 0
@@ -558,6 +568,16 @@ Prefab:
       propertyPath: _invalidSpawnLayers.m_Bits
       value: 14336
       objectReference: {fileID: 0}
+    - target: {fileID: 224086156511114654, guid: 04e203d53659f7347bc582c6f683d6e3,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114972483581079394, guid: 04e203d53659f7347bc582c6f683d6e3,
+        type: 2}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2075055501}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04e203d53659f7347bc582c6f683d6e3, type: 2}
   m_IsPrefabParent: 0
@@ -1197,7 +1217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbb3ddba8025dc46aa7c6a1123afdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
   _invalidSpawnLayers:
     serializedVersion: 2
     m_Bits: 0
