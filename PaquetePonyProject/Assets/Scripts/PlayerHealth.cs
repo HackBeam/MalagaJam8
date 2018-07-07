@@ -6,8 +6,6 @@ public class PlayerHealth : MonoBehaviour {
 
     [SerializeField] private int currentHealth;
 
-    private int _playerId = -1;
-
     private PlayerStats _playerStats;
     private PlayerIdentifier _playerIdentifier;
 
