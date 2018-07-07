@@ -23,10 +23,12 @@ public class PlayerStats : MonoBehaviour {
 
     private PlayerHealth _playerHealth;
     private int currentZones = 0;
+    private int _playerId = -1;
 
     public void Awake()
     {
         _playerHealth = gameObject.GetComponent<PlayerHealth>();
+        //Get Player ID
     }
 
     #region Properties
@@ -58,7 +60,7 @@ public class PlayerStats : MonoBehaviour {
         {
             _currentDamagePowerUp = -_maxDamagePowerUp;
         }
-            
+        RefreshInterface();
     }
 
     public void ModifySpeed(int value)
@@ -72,7 +74,7 @@ public class PlayerStats : MonoBehaviour {
         {
             _currentSpeedPowerUp = -_maxSpeedPowerUp;
         }
-
+        RefreshInterface();
     }
 
     public void ModifyHealth(int value)
@@ -87,11 +89,12 @@ public class PlayerStats : MonoBehaviour {
         {
             _currentHealthPowerUp = -_maxHealthPowerUp;
         }
+        RefreshInterface();
         _playerHealth.OnMaxHealthModified(lastMaxHealth);
     }
     #endregion
 
-    void EnterInversionZone()
+    public void EnterInversionZone()
     {
         currentZones++;
         if (!currentlyInverted)
@@ -99,11 +102,12 @@ public class PlayerStats : MonoBehaviour {
             _currentHealthPowerUp = -_currentHealthPowerUp;
             _currentDamagePowerUp = -_currentDamagePowerUp;
             _currentSpeedPowerUp = -_currentSpeedPowerUp;
+            RefreshInterface();
             currentlyInverted = true;
         }
     }
 
-    void ExitInversionZone()
+    public void ExitInversionZone()
     {
         currentZones--;
         if (currentlyInverted && currentZones == 0)
@@ -111,7 +115,22 @@ public class PlayerStats : MonoBehaviour {
             _currentHealthPowerUp = -_currentHealthPowerUp;
             _currentDamagePowerUp = -_currentDamagePowerUp;
             _currentSpeedPowerUp = -_currentSpeedPowerUp;
+            RefreshInterface();
             currentlyInverted = false;
         }
     }
+
+    private void RefreshInterface()
+    {
+        Container.eventSystem.Trigger(new StatsChangedEvent()
+        {
+            playerId = _playerId,
+            newHealthPowerUp = _currentHealthPowerUp,
+            newDamagePowerUp = _currentDamagePowerUp,
+            newSpeedPowerUp = _currentSpeedPowerUp
+        });
+        currentlyInverted = false;
+    }
 }
+
+
