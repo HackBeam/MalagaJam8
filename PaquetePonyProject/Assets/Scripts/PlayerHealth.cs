@@ -9,11 +9,13 @@ public class PlayerHealth : MonoBehaviour {
     private int _playerId = -1;
 
     private PlayerStats _playerStats;
+    private PlayerIdentifier _playerIdentifier;
 
 	// Use this for initialization
 	void Awake ()
     {
         _playerStats = gameObject.GetComponent<PlayerStats>();
+        _playerIdentifier = gameObject.GetComponent<PlayerIdentifier>();
         currentHealth = _playerStats.GetCurrentMaxHealth();
         //Get PlayerId
         RefreshInterface();
@@ -33,7 +35,7 @@ public class PlayerHealth : MonoBehaviour {
         {
             Container.eventSystem.Trigger(new DeathEvent()
             {
-                playerId = _playerId
+                playerId = _playerIdentifier.GetPlayerId()
             });
         }
     }
@@ -54,7 +56,7 @@ public class PlayerHealth : MonoBehaviour {
         porcentualHealth = (currentHealth / _playerStats.GetCurrentMaxHealth());
         Container.eventSystem.Trigger(new HealthChangedEvent()
         {
-            playerId = _playerId,
+            playerId = _playerIdentifier.GetPlayerId(),
             newCurrentHealthPercent = currentHealth
         });
     }

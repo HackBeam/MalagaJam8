@@ -22,13 +22,13 @@ public class PlayerStats : MonoBehaviour {
     private bool currentlyInverted;
 
     private PlayerHealth _playerHealth;
+    private PlayerIdentifier _playerIdentifier;
     private int currentZones = 0;
-    private int _playerId = -1;
 
     public void Awake()
     {
         _playerHealth = gameObject.GetComponent<PlayerHealth>();
-        //Get Player ID
+        _playerIdentifier = gameObject.GetComponent<PlayerIdentifier>();
     }
 
     #region Properties
@@ -110,13 +110,14 @@ public class PlayerStats : MonoBehaviour {
     public void ExitInversionZone()
     {
         currentZones--;
-        if (currentlyInverted && currentZones == 0)
+        if (currentlyInverted && currentZones <= 0)
         {
             _currentHealthPowerUp = -_currentHealthPowerUp;
             _currentDamagePowerUp = -_currentDamagePowerUp;
             _currentSpeedPowerUp = -_currentSpeedPowerUp;
             RefreshInterface();
             currentlyInverted = false;
+            currentZones = 0;
         }
     }
 
@@ -124,7 +125,7 @@ public class PlayerStats : MonoBehaviour {
     {
         Container.eventSystem.Trigger(new StatsChangedEvent()
         {
-            playerId = _playerId,
+            playerId = _playerIdentifier.GetPlayerId(),
             newHealthPowerUp = _currentHealthPowerUp,
             newDamagePowerUp = _currentDamagePowerUp,
             newSpeedPowerUp = _currentSpeedPowerUp
