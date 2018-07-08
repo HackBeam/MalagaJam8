@@ -1217,7 +1217,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1986376465908862}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7, y: 20.3, z: 11.6}
+  m_LocalPosition: {x: 0, y: 20.3, z: 11.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4794328693187626}
@@ -1541,7 +1541,7 @@ Transform:
   m_GameObject: {fileID: 1600867803760432}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 4514452240355006}
   m_RootOrder: 1
@@ -1690,7 +1690,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1688490349502920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 87.9, y: 3.9705067, z: 71.2}
+  m_LocalPosition: {x: 211.9, y: 3.7, z: 130.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4794328693187626}
@@ -3091,6 +3091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbb3ddba8025dc46aa7c6a1123afdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
   _invalidSpawnLayers:
     serializedVersion: 2
     m_Bits: 14336
@@ -3202,6 +3203,9 @@ MonoBehaviour:
   _maxHealthPowerUp: 5
   _maxDamagePowerUp: 5
   _maxSpeedPowerUp: 5
+  healthMultiplier: 1
+  damageMultiplier: 1
+  speedMultiplier: 10
   _currentHealthPowerUp: 0
   _currentDamagePowerUp: 0
   _currentSpeedPowerUp: 0
