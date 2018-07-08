@@ -13,10 +13,12 @@ public class Shoot : MonoBehaviour
     [SerializeField] private LayerMask collidableLayers;
 
     private WaitForSeconds lifeWait;
+    private MultiPoolSystem pool;
 
     private void Awake()
     {
         lifeWait = new WaitForSeconds(lifeTime);
+        pool = FindObjectOfType<MultiPoolSystem>();
     }
 
     private void Update()
@@ -50,6 +52,10 @@ public class Shoot : MonoBehaviour
             {
                 otherHealth.ReceiveDamage(damage);
             }
+
+            GameObject parts = pool.GetFreeObject<ShootDownParticle>();
+            parts.transform.position = transform.position;
+            parts.SetActive(true);
 
             gameObject.SetActive(false);
         }
