@@ -44,6 +44,7 @@ public class PlayerHealth : MonoBehaviour {
         {
             Death();
         }
+        Container.eventSystem.Trigger(new ScreenShakeEvent());
     }
 
     [Button]

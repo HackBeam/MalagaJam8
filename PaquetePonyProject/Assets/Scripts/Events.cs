@@ -34,3 +34,8 @@ public class CenterScenaryEvent
     public Transform transformReference = null;
     public CenterScenaryEvent() { }
 }
+
+public class ScreenShakeEvent
+{
+    public ScreenShakeEvent () {}
+}
