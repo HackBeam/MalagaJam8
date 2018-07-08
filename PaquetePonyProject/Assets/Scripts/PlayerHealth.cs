@@ -24,6 +24,7 @@ public class PlayerHealth : MonoBehaviour {
         RefreshInterface();
     }
 
+
     private void SetCenter(CenterScenaryEvent obj)
     {
         _scenaryCenter = obj.transformReference;
@@ -65,7 +66,6 @@ public class PlayerHealth : MonoBehaviour {
         Vector3 position = Vector3.zero;
         while (!placeFounded)
         {
-            Debug.Log("Sigo andando");
             Vector3 _right = _scenaryCenter.right * Random.Range(-_radius, _radius);
             Vector3 _left = _scenaryCenter.forward * Random.Range(-_radius, _radius);
             position = (_right + _left) + _scenaryCenter.position;
@@ -76,7 +76,6 @@ public class PlayerHealth : MonoBehaviour {
             }
             yield return null;
         }
-        Debug.Log("pase");
         transform.position = new Vector3(position.x,transform.position.y,position.z);
         _child.SetActive(true);
         RefreshInterface();
