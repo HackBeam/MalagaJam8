@@ -41,6 +41,18 @@ Preset:
     value: 5
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: healthMultiplier
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageMultiplier
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: speedMultiplier
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: _currentHealthPowerUp
     value: 0
     objectReference: {fileID: 0}
@@ -86,15 +98,15 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: positiveColor.r
-    value: 0.14831792
+    value: 0.9529412
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: positiveColor.g
-    value: 0.9528302
+    value: 0.23921569
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: positiveColor.b
-    value: 0.23409067
+    value: 0.39215687
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: positiveColor.a

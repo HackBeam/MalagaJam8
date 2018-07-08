@@ -1690,7 +1690,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1688490349502920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 211.9, y: 3.7, z: 130.5}
+  m_LocalPosition: {x: -68, y: 3.7, z: -55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4794328693187626}
@@ -3032,7 +3032,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &65508384499727674
 BoxCollider:
@@ -3203,8 +3203,8 @@ MonoBehaviour:
   _maxHealthPowerUp: 5
   _maxDamagePowerUp: 5
   _maxSpeedPowerUp: 5
-  healthMultiplier: 1
-  damageMultiplier: 1
+  healthMultiplier: 5
+  damageMultiplier: 5
   speedMultiplier: 10
   _currentHealthPowerUp: 0
   _currentDamagePowerUp: 0
@@ -3221,7 +3221,7 @@ MonoBehaviour:
   speedFill: {fileID: 114299995617063910}
   damageFill: {fileID: 114703539414984220}
   extraHealthFill: {fileID: 114646235096943816}
-  positiveColor: {r: 0.14831792, g: 0.9528302, b: 0.23409067, a: 1}
+  positiveColor: {r: 0.9529412, g: 0.23921569, b: 0.39215687, a: 1}
   negativeColor: {r: 0.1527234, g: 0.51503754, b: 0.8301887, a: 1}
 --- !u!114 &114205499747569602
 MonoBehaviour:

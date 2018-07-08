@@ -2930,7 +2930,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &65763495884095612
 BoxCollider:
@@ -3320,7 +3320,7 @@ MonoBehaviour:
   speedFill: {fileID: 114255230117157448}
   damageFill: {fileID: 114286030577302032}
   extraHealthFill: {fileID: 114356575130153518}
-  positiveColor: {r: 0.14831792, g: 0.9528302, b: 0.23409067, a: 1}
+  positiveColor: {r: 0.9529412, g: 0.23921569, b: 0.39215687, a: 1}
   negativeColor: {r: 0.1527234, g: 0.51503754, b: 0.8301887, a: 1}
 --- !u!114 &114537245907567448
 MonoBehaviour:
