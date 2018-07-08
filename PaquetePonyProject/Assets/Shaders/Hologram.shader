@@ -3,6 +3,7 @@
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_Lines("Lines", float) = 5
+		_Speed("Speed",float) = 1
 	}
 	SubShader {
 		Tags { "RenderType"="Transparent" }
@@ -14,6 +15,7 @@
 		sampler2D _MainTex;
 		fixed4 _Color;
 		float _Lines;
+		float _Speed;
 
 		struct Input {
 			float2 uv_MainTex;
@@ -31,7 +33,7 @@
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
 			o.Emission = _Color.rgb;
-			o.Alpha = _Color.a * frac((IN.worldPos.y - _Time)*_Lines);
+			o.Alpha = _Color.a * frac((IN.worldPos.y - (_Time * _Speed))*_Lines);
 		}
 
 		fixed4 LightingNoLighting(SurfaceOutput s, fixed3 lightDir, fixed atten) {
