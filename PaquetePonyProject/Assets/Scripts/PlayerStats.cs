@@ -12,6 +12,11 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int _maxDamagePowerUp = 5;
     [SerializeField] private int _maxSpeedPowerUp = 5;
 
+    [Title("PowerUp Multiplier")]
+    [SerializeField] private int healthMultiplier = 1;
+    [SerializeField] private int damageMultiplier = 1;
+    [SerializeField] private int speedMultiplier = 1;
+
     [Title("current PowerUp Value")]
     [ReadOnly, SerializeField] private int _currentHealthPowerUp = 0;
     [ReadOnly, SerializeField] private int _currentDamagePowerUp = 0;
@@ -71,17 +76,17 @@ public class PlayerStats : MonoBehaviour
     #region Properties
     public int GetCurrentSpeed()
     {
-        return _baseSpeed + _currentSpeedPowerUp;
+        return _baseSpeed + _currentSpeedPowerUp * speedMultiplier;
     }
 
     public int GetCurrentDamage()
     {
-        return _baseDamage + _currentDamagePowerUp;
+        return _baseDamage + _currentDamagePowerUp * damageMultiplier;
     }
 
     public int GetCurrentMaxHealth()
     {
-        return _baseHealth + _currentHealthPowerUp;
+        return _baseHealth + _currentHealthPowerUp * healthMultiplier;
     }
     #endregion
 

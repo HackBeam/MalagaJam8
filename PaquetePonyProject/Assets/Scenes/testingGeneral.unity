@@ -302,6 +302,16 @@ Prefab:
       propertyPath: poolSystem
       value: 
       objectReference: {fileID: 1605653333}
+    - target: {fileID: 224086156511114654, guid: 04e203d53659f7347bc582c6f683d6e3,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114161796775134896, guid: 04e203d53659f7347bc582c6f683d6e3,
+        type: 2}
+      propertyPath: speedMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04e203d53659f7347bc582c6f683d6e3, type: 2}
   m_IsPrefabParent: 0
@@ -476,6 +486,31 @@ Prefab:
         type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114413134496244776, guid: f3788879d0c735d4b956a7d98420d241,
+        type: 2}
+      propertyPath: speedMultiplier
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114413134496244776, guid: f3788879d0c735d4b956a7d98420d241,
+        type: 2}
+      propertyPath: damageMultiplier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114306511064440810, guid: f3788879d0c735d4b956a7d98420d241,
+        type: 2}
+      propertyPath: currentHealth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114413134496244776, guid: f3788879d0c735d4b956a7d98420d241,
+        type: 2}
+      propertyPath: _currentHealthPowerUp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114413134496244776, guid: f3788879d0c735d4b956a7d98420d241,
+        type: 2}
+      propertyPath: healthMultiplier
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3788879d0c735d4b956a7d98420d241, type: 2}

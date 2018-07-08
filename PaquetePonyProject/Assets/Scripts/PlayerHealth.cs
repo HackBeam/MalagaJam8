@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 
 public class PlayerHealth : MonoBehaviour {
 
-    private int currentHealth;
+    [ReadOnly, SerializeField]private int currentHealth;
     [SerializeField] private LayerMask _invalidSpawnLayers;
     [SerializeField] private GameObject _child;
     private PlayerStats _playerStats;
