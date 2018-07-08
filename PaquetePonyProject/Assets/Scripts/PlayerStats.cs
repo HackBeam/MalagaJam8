@@ -42,6 +42,7 @@ public class PlayerStats : MonoBehaviour
 
     private PlayerHealth _playerHealth;
     private PlayerIdentifier _playerIdentifier;
+    private AudioSource audioS;
     private int currentZones = 0;
 
     private void OnEnable()
@@ -71,6 +72,7 @@ public class PlayerStats : MonoBehaviour
     {
         _playerHealth = gameObject.GetComponent<PlayerHealth>();
         _playerIdentifier = gameObject.GetComponent<PlayerIdentifier>();
+        audioS = GetComponent<AudioSource>();
     }
 
     #region Properties
@@ -178,7 +180,7 @@ public class PlayerStats : MonoBehaviour
         // Es un power Up
         if (((1 << other.gameObject.layer) & _layerPowerUp) != 0)
         {
-            Debug.Log("PowerUp");
+            audioS.Play();
             PowerUp item = other.gameObject.GetComponent<PowerUp>();
             switch (item._powerUpType)
             {
