@@ -167,8 +167,14 @@ MonoBehaviour:
       - _enabled: 1
         _categoryId: 0
         _layoutId: 0
-      _defaultMouseMaps: []
-      _defaultKeyboardMaps: []
+      _defaultMouseMaps:
+      - _enabled: 1
+        _categoryId: 0
+        _layoutId: 0
+      _defaultKeyboardMaps:
+      - _enabled: 1
+        _categoryId: 0
+        _layoutId: 0
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 1
@@ -271,9 +277,9 @@ MonoBehaviour:
       _digitalAxisGravity: 3
       _digitalAxisSensitivity: 3
       _mouseXYAxisMode: 0
-      _mouseOtherAxisMode: 0
+      _mouseOtherAxisMode: 1
       _mouseXYAxisSensitivity: 1
-      _mouseXYAxisDeltaCalc: 0
+      _mouseXYAxisDeltaCalc: 1
       _mouseOtherAxisSensitivity: 1
       _customControllerAxisSensitivity: 1
       _buttonDoublePressSpeed: 0.3

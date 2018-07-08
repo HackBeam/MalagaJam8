@@ -43,6 +43,15 @@ public class Shoot : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if (((1 << other.gameObject.layer) & collidableLayers) != 0)
+        {
+            PlayerHealth otherHealth =  other.gameObject.GetComponent<PlayerHealth>();
+
+            if (otherHealth)
+            {
+                otherHealth.ReceiveDamage(damage);
+            }
+
             gameObject.SetActive(false);
+        }
     }
 }

@@ -14,12 +14,23 @@ public class StatsChangedEvent
 public class HealthChangedEvent
 {
     public int playerId = -1;
-    public int newCurrentHealthPercent = 0;
+    public float newCurrentHealthPercent = 0;
     public HealthChangedEvent() { }
 }
 
 public class DeathEvent
 {
-    public int playerId = -1;
+    public int deadPlayerId = -1;
     public DeathEvent() { }
+}
+
+public class GameOver
+{
+    public GameOver() { }
+}
+
+public class CenterScenaryEvent
+{
+    public Transform transformReference = null;
+    public CenterScenaryEvent() { }
 }

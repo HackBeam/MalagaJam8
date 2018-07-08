@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Sirenix.OdinInspector;
 
-public class PlayerStats : MonoBehaviour {
+public class PlayerStats : MonoBehaviour
+{
 
     [Title("Max PowerUp Value")]
     [SerializeField] private int _maxHealthPowerUp = 10;
@@ -11,7 +13,7 @@ public class PlayerStats : MonoBehaviour {
     [SerializeField] private int _maxSpeedPowerUp = 5;
 
     [Title("current PowerUp Value")]
-    [ReadOnly,SerializeField]private int _currentHealthPowerUp = 0;
+    [ReadOnly, SerializeField] private int _currentHealthPowerUp = 0;
     [ReadOnly, SerializeField] private int _currentDamagePowerUp = 0;
     [ReadOnly, SerializeField] private int _currentSpeedPowerUp = 0;
 
@@ -24,15 +26,27 @@ public class PlayerStats : MonoBehaviour {
     [SerializeField] private LayerMask _layerInvertZone;
     [SerializeField] private LayerMask _layerPowerUp;
 
+    [Title("UI Stats")]
+    [SerializeField] private Image speedFill;
+    [SerializeField] private Image damageFill;
+    [SerializeField] private Image extraHealthFill;
+    [SerializeField] private Color positiveColor;
+    [SerializeField] private Color negativeColor;
+
     private bool currentlyInverted;
 
     private PlayerHealth _playerHealth;
     private PlayerIdentifier _playerIdentifier;
     private int currentZones = 0;
 
+    private void OnEnable()
+    {
+        RefreshInterface();
+    }
+
     private void OnValidate()
     {
-        if((_baseHealth - _maxHealthPowerUp) <= 0)
+        if ((_baseHealth - _maxHealthPowerUp) <= 0)
         {
             _maxHealthPowerUp = _baseHealth - 1;
         }
@@ -64,7 +78,7 @@ public class PlayerStats : MonoBehaviour {
     {
         return _baseDamage + _currentDamagePowerUp;
     }
-  
+
     public int GetCurrentMaxHealth()
     {
         return _baseHealth + _currentHealthPowerUp;
@@ -79,7 +93,7 @@ public class PlayerStats : MonoBehaviour {
         {
             _currentDamagePowerUp = _maxDamagePowerUp;
         }
-        else if(_currentDamagePowerUp < -_maxDamagePowerUp)
+        else if (_currentDamagePowerUp < -_maxDamagePowerUp)
         {
             _currentDamagePowerUp = -_maxDamagePowerUp;
         }
@@ -153,7 +167,6 @@ public class PlayerStats : MonoBehaviour {
         // Es una zona de inversion
         if (((1 << other.gameObject.layer) & _layerInvertZone) != 0)
         {
-            Debug.Log("EnterInverted");
             EnterInversionZone();
         }
 
@@ -185,20 +198,60 @@ public class PlayerStats : MonoBehaviour {
         // Es una zona de inversion
         if (((1 << other.gameObject.layer) & _layerInvertZone) != 0)
         {
-            Debug.Log("ExitInverted");
             ExitInversionZone();
         }
     }
 
     private void RefreshInterface()
     {
-        Container.eventSystem.Trigger(new StatsChangedEvent()
+        /*Container.eventSystem.Trigger(new StatsChangedEvent()
         {
             playerId = _playerIdentifier.GetPlayerId(),
             newHealthPowerUp = _currentHealthPowerUp,
             newDamagePowerUp = _currentDamagePowerUp,
             newSpeedPowerUp = _currentSpeedPowerUp
         });
+        */
+
+        speedFill.fillAmount = Mathf.Abs(_currentSpeedPowerUp) / (float) _maxSpeedPowerUp;;
+        
+
+        if (_currentSpeedPowerUp < 0)
+        {
+            speedFill.GetComponent<RectTransform>().localScale = new Vector3(-1, 1, 1);
+            speedFill.color = negativeColor;
+        }
+        else
+        {
+            speedFill.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            speedFill.color = positiveColor;
+        }
+
+        damageFill.fillAmount = Mathf.Abs(_currentDamagePowerUp) / (float) _maxDamagePowerUp;
+
+        if (_currentDamagePowerUp < 0)
+        {
+            damageFill.GetComponent<RectTransform>().localScale = new Vector3(-1, 1, 1);
+            damageFill.color = negativeColor;
+        }
+        else
+        {
+            damageFill.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            damageFill.color = positiveColor;
+        }
+
+        extraHealthFill.fillAmount = Mathf.Abs(_currentHealthPowerUp) / (float) _maxHealthPowerUp;
+
+        if (_currentHealthPowerUp < 0)
+        {
+            extraHealthFill.GetComponent<RectTransform>().localScale = new Vector3(-1, 1, 1);
+            extraHealthFill.color = negativeColor;
+        }
+        else
+        {
+            extraHealthFill.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            extraHealthFill.color = positiveColor;
+        }
     }
 }
 

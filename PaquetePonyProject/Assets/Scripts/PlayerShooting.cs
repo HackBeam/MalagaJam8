@@ -15,17 +15,13 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float reloadTime;
     [SerializeField] private int magazineCapacity;
 
+    private Animator playerAnimator;
+
     private bool canFire = true;
     private int ammo;
 
     private PlayerIdentifier playerID;
-
-    private static ValueDropdownList<int> players = new ValueDropdownList<int>()
-    {
-        {"Player0", RewiredConsts.Player.Player0},
-        {"Player1", RewiredConsts.Player.Player1}
-    };
-
+    
     //Component References
     private PlayerStats stats;
     private WaitForSeconds fireRateWait;
@@ -37,6 +33,7 @@ public class PlayerShooting : MonoBehaviour
         fireRateWait = new WaitForSeconds(fireRate);
         reloadWait = new WaitForSeconds(reloadTime);
         playerID = GetComponentInParent<PlayerIdentifier>();
+        playerAnimator = GetComponentInChildren<Animator>();
         SubscribeInput();
     }
 
@@ -60,6 +57,8 @@ public class PlayerShooting : MonoBehaviour
             bullet.transform.position = bulletStart.transform.position;
             bullet.transform.rotation = bulletStart.transform.rotation;
             bullet.SetActive(true);
+
+            playerAnimator.SetBool("Disparar",true);
 
             ammo--;
             StartCoroutine(FireRateTimer());
