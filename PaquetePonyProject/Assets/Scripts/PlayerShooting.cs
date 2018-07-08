@@ -16,6 +16,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private int magazineCapacity;
 
     private Animator playerAnimator;
+    private AudioSource audio;
 
     private bool canFire = true;
     private int ammo;
@@ -34,6 +35,7 @@ public class PlayerShooting : MonoBehaviour
         reloadWait = new WaitForSeconds(reloadTime);
         playerID = GetComponentInParent<PlayerIdentifier>();
         playerAnimator = GetComponentInChildren<Animator>();
+        audio = GetComponent<AudioSource>();
         SubscribeInput();
     }
 
@@ -72,6 +74,7 @@ public class PlayerShooting : MonoBehaviour
 
     private IEnumerator ReloadTime()
     {
+        audio.Play();
         yield return reloadWait;
         ammo = magazineCapacity;
     }

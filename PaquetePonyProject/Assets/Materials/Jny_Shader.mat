@@ -43,7 +43,7 @@ Material:
     - _DisLineWidth: 0.001
     - _NScale: 0.06
     - _PixelSize: 2.5
-    - _Radius: 42
+    - _Radius: 74
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color2: {r: 0.5849056, g: 0.504895, b: 0.5208971, a: 1}
