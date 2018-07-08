@@ -345,6 +345,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: fcbd976c4623bd54299a357ad60f1b8c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27dbbb95f26f19343b37288d4df56c6d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fcbd976c4623bd54299a357ad60f1b8c, type: 3}
   m_IsPrefabParent: 0
@@ -757,6 +761,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: fcbd976c4623bd54299a357ad60f1b8c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27dbbb95f26f19343b37288d4df56c6d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fcbd976c4623bd54299a357ad60f1b8c, type: 3}
   m_IsPrefabParent: 0
@@ -1056,6 +1064,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: fcbd976c4623bd54299a357ad60f1b8c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27dbbb95f26f19343b37288d4df56c6d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fcbd976c4623bd54299a357ad60f1b8c, type: 3}
   m_IsPrefabParent: 0
@@ -1532,16 +1544,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 114640938593493170, guid: 04e203d53659f7347bc582c6f683d6e3,
-        type: 2}
-      propertyPath: poolSystem
-      value: 
-      objectReference: {fileID: 1605653333}
     - target: {fileID: 114972483581079394, guid: 04e203d53659f7347bc582c6f683d6e3,
         type: 2}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1340176700}
+    - target: {fileID: 114640938593493170, guid: 04e203d53659f7347bc582c6f683d6e3,
+        type: 2}
+      propertyPath: poolSystem
+      value: 
+      objectReference: {fileID: 1605653333}
+    - target: {fileID: 224086156511114654, guid: 04e203d53659f7347bc582c6f683d6e3,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04e203d53659f7347bc582c6f683d6e3, type: 2}
   m_IsPrefabParent: 0
@@ -1616,12 +1633,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 114544336674793924, guid: 2bc8b9f52ba1d694fa9061cc0cd5a008,
-        type: 2}
-      propertyPath: prefabList.Array.data[0]
-      value: 
-      objectReference: {fileID: 1483528616756702, guid: a320ea7975bb8ae4a914429fb9b43ed2,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2bc8b9f52ba1d694fa9061cc0cd5a008, type: 2}
   m_IsPrefabParent: 0
@@ -1664,16 +1675,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 114537245907567448, guid: f3788879d0c735d4b956a7d98420d241,
-        type: 2}
-      propertyPath: cameraTransform
-      value: 
-      objectReference: {fileID: 1340176700}
     - target: {fileID: 114364227591370960, guid: f3788879d0c735d4b956a7d98420d241,
         type: 2}
       propertyPath: poolSystem
       value: 
       objectReference: {fileID: 1605653333}
+    - target: {fileID: 114537245907567448, guid: f3788879d0c735d4b956a7d98420d241,
+        type: 2}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 1340176700}
+    - target: {fileID: 224001689358184808, guid: f3788879d0c735d4b956a7d98420d241,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f3788879d0c735d4b956a7d98420d241, type: 2}
   m_IsPrefabParent: 0
@@ -2046,6 +2062,7 @@ GameObject:
   - component: {fileID: 1340176698}
   - component: {fileID: 1340176697}
   - component: {fileID: 1340176701}
+  - component: {fileID: 1340176702}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2128,6 +2145,101 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 55d98048a8ba70048b23fc0efaecec5d, type: 2}
+--- !u!82 &1340176702
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1340176696}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7a22121dcc7037c4d8f9379ce9f06b28, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1397492808 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 815dc659a035ed14eaacf0009cc01057, type: 3}
@@ -2863,6 +2975,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: fcbd976c4623bd54299a357ad60f1b8c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27dbbb95f26f19343b37288d4df56c6d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fcbd976c4623bd54299a357ad60f1b8c, type: 3}
   m_IsPrefabParent: 0
